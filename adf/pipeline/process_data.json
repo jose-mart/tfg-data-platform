@@ -1,0 +1,36 @@
+{
+	"name": "process_data",
+	"properties": {
+		"activities": [
+			{
+				"name": "Process_data",
+				"type": "DatabricksNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": {
+						"value": "/traffic_monitoring/driver",
+						"type": "Expression"
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "dbricks",
+					"type": "LinkedServiceReference",
+					"parameters": {
+						"cluster_version": "7.1.x-scala2.12",
+						"cluster_node_type": "Standard_F4s",
+						"workers": "1"
+					}
+				}
+			}
+		],
+		"annotations": []
+	}
+}

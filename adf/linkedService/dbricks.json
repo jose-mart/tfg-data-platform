@@ -1,0 +1,38 @@
+{
+	"name": "dbricks",
+	"properties": {
+		"parameters": {
+			"cluster_version": {
+				"type": "string",
+				"defaultValue": "6.5.x-scala2.11"
+			},
+			"cluster_node_type": {
+				"type": "string",
+				"defaultValue": "Standard_F4s"
+			},
+			"workers": {
+				"type": "string",
+				"defaultValue": "1"
+			}
+		},
+		"annotations": [],
+		"type": "AzureDatabricks",
+		"typeProperties": {
+			"domain": "https://adb-4750454006392481.1.azuredatabricks.net/",
+			"accessToken": {
+				"type": "AzureKeyVaultSecret",
+				"store": {
+					"referenceName": "kv",
+					"type": "LinkedServiceReference"
+				},
+				"secretName": "databricks-token"
+			},
+			"newClusterNodeType": "@linkedService().cluster_node_type",
+			"newClusterNumOfWorker": "@linkedService().workers",
+			"newClusterSparkEnvVars": {
+				"PYSPARK_PYTHON": "/databricks/python3/bin/python3"
+			},
+			"newClusterVersion": "@linkedService().cluster_version"
+		}
+	}
+}

@@ -1,0 +1,12 @@
+{
+	"name": "traffic_api",
+	"properties": {
+		"annotations": [],
+		"type": "HttpServer",
+		"typeProperties": {
+			"url": "http://miv.opendata.belfla.be/miv/",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}

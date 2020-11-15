@@ -1,0 +1,15 @@
+{
+	"name": "conftable",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "conftable",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureTable",
+		"schema": [],
+		"typeProperties": {
+			"tableName": "conftable"
+		}
+	}
+}

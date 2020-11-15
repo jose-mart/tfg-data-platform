@@ -1,0 +1,18 @@
+{
+  "scriptFile": "__init__.py",
+  "bindings": [
+    {
+      "name": "mytimer",
+      "type": "timerTrigger",
+      "direction": "in",
+      "schedule": "0 * * * * *"
+    },
+    {
+      "type": "table",
+      "direction": "out",
+      "name": "log",
+      "tableName": "ingestionlog",
+      "connection": "AzureWebJobsStorage"
+    }
+  ]
+}

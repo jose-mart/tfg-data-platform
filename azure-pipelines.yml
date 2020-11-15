@@ -1,0 +1,47 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- tfg/master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+  - task: CopyFiles@2
+    inputs:
+      SourceFolder: '$(Build.Repository.LocalPath)/serverless_functions'
+      Contents: '**'
+      TargetFolder: '$(Build.ArtifactStagingDirectory)/serverless_functions'
+  
+  - task: CopyFiles@2
+    inputs:
+      SourceFolder: '$(Build.Repository.LocalPath)/terraform'
+      Contents: '**'
+      TargetFolder: '$(Build.ArtifactStagingDirectory)/terraform'
+  
+  - task: CopyFiles@2
+    inputs:
+      SourceFolder: '$(Build.Repository.LocalPath)/databricks'
+      Contents: '**'
+      TargetFolder: '$(Build.ArtifactStagingDirectory)/databricks'
+  
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)/serverless_functions'
+      ArtifactName: 'tfg-az-function'
+      publishLocation: 'Container'
+  
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)/terraform'
+      ArtifactName: 'tfg-terraform'
+      publishLocation: 'Container'
+  
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: '$(Build.ArtifactStagingDirectory)/databricks'
+      ArtifactName: 'tfg-databricks'
+      publishLocation: 'Container'
